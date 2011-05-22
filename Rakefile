@@ -4,25 +4,25 @@ begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
   $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
+  $stderr.puts 'Run `bundle install` to install missing gems'
   exit e.status_code
 end
 require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "datauri"
-  gem.homepage = "http://github.com/andreastt/datauri"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "andreastt@opera.com"
-  gem.authors = ["Andreas Tolf Tolfsen"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.name = 'datauri'
+  gem.homepage = 'http://github.com/andreastt/datauri'
+  gem.license = 'GPLv3'
+  gem.summary = 'Compiles "data" URL scheme addresses from file or input'
+  gem.description = <<EOS
+"data" URL scheme defines a way to embed (small) media type data
+directly inline in a document.  This works for any kind of data and is
+supported by most modern browsers.
+EOS
+  gem.email = 'ato@fsfe.org'
+  gem.authors = ['Andreas Tolf Tolfsen']
+  gem.add_development_dependency 'rspec', '> 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

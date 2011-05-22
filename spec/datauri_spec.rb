@@ -1,7 +1,22 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "Datauri" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+describe DataUri do
+
+  describe '#new' do
+    context 'given one file' do
+    end
+
+    context 'given multiple files' do
+    end
+
+    context 'given STDIN' do
+      it 'converts 
+    end
+
+    context 'given nothing' do
+      it 'opens $EDITOR' do
+      end
+    end
   end
+
 end
