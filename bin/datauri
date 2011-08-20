@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'datauri'
+rescue LoadError
+  $stderr.puts <<-EOS
+#{'*'*73}
+
+  Could not find 'datauri'
+
+  This may happen if you're using rubygems as your package manager, but
+  it is not beging required through some mechanism before executing the
+  ol command.
+
+  You may need to do one of the following in your shell:
+
+    # for bash/zsh
+    export RUBYOPTS=rubygems
+
+    # for csh, &c.
+    set RUBYOPTS=rubygems
+
+  For background, please see <URI:http://gist.github.com/54177>.
+
+#{'*'*73}
+  EOS
+  exit(1)
+end
+
+DataUri.new.run!(ARGV)

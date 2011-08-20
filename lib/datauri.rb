@@ -1,6 +1,7 @@
 #
 # datauri - Compiles "data" URL scheme addresses from file or input
-# Copyright (C) 2011  Andreas Tolf Tolfsen <ato@fsfe.org>
+#
+# Copyright (C) 2011 Andreas Tolf Tolfsen <ato@fsfe.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,40 +18,42 @@
 #
 
 require 'tempfile'
+require 'datauri/version'
+require 'datauri/compiler'
 
-class DataUri
+module DataUri
 
   attr_accessor :output
 
-  #
-  # The DataUri class lets you compile strings or the contents or
-  # files into "data" URL scheme addresses.
-  #
-  # @param  input [String,File] A string or file object you wish to
-  #                             compile.
-  # @return       [Array]       List of URLs.
-  #
+  class << self
 
-  def initialize(input, type='text/html;charset=utf-8')
-    @output = []
-
-    case input
-    when String
-      abort 'datauri: Missing input' if input.empty?
-      @output << Compiler.compile(input, type)
-    when File
-      abort "datauri: #{input}: No such file or directory"
-      @output << Compiler.compile(input.read, type)
-    else
-      abort 'datauri: Unknown input'
+    def run!(args)
+      p args
+      abort
     end
-  end
 
-  def to_s
-    @output
+    #
+    # The DataUri class lets you compile strings or the contents or
+    # files into "data" URL scheme addresses.
+    #
+    # @param  input [String,File] a string or file object you wish to
+    #                             encode
+    # @return       [String]      Encoded data URI scheme address
+    #
+
+    def encode(input, type='text/html;charset=utf-8')
+      case input
+      when String
+        abort 'datauri: Missing input' if input.empty?
+        Compiler.compile(input, type)
+      when File
+        abort "datauri: #{input}: No such file or directory"
+        Compiler.compile(input.read, type)
+      else
+        abort 'datauri: Unknown input'
+      end
+    end
+
   end
 
 end
-
-require '../lib/datauri/version'
-require '../lib/datauri/compiler'
